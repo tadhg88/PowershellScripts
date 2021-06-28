@@ -1,9 +1,9 @@
 Write-Host "Start script"
 
-Set-Location -Path C:\sandbox\Powershell
+Write-Host $PSScriptRoot
 
-$CurrentLocation = Get-Location
-$FileLocation = -join ($CurrentLocation, "\Log-2021-06-15.csv")
+#$CurrentLocation = Get-Location
+$FileLocation = -join ($PSScriptRoot, "\Log-20210622.csv")
 Write-Host $FileLocation
 
 # Read parent CSV
@@ -23,7 +23,7 @@ while ($line -le $InputFilename.Length) {
     # Generate child CSVs
     if ($i -eq $LineLimit -Or $line -eq $InputFilename.Length) {
         $file++
-        $Filename = -join ($CurrentLocation, "\", "$OutputFilenamePattern$file.csv")
+        $Filename = -join ($PSScriptRoot, "\", "$OutputFilenamePattern$file.csv")
         $InputFilename[$start..($line - 1)] | Out-File $Filename -Force
         $start = $line;
         $i = 0
