@@ -5,7 +5,10 @@ $FileLocation = -join ($PSScriptRoot, "\LogfileToSplit.csv")
 Write-Host $FileLocation
 
 # Read parent CSV
+Write-Host "Read file..."
 $InputFilename = Get-Content $FileLocation
+Write-Host "Finished reading file..."
+
 $OutputFilenamePattern = 'output_split_'
 $LineLimitPerFile = 40000
 
